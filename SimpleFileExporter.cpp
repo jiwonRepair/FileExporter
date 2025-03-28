@@ -1,13 +1,13 @@
-#include "wifioptimizer.h"
+#include "SimpleFileExporter.h"
 #include <QCoreApplication>
 #include <QDebug>
 
-WifiOptimizer::WifiOptimizer(QObject* parent)
+SimpleFileExporter::SimpleFileExporter(QObject* parent)
     : QObject(parent), m_fileExporter(this)
 {
 }
 
-void WifiOptimizer::exportSignalHistoryToFile() {
+void SimpleFileExporter::exportSignalHistoryToFile() {
     if (m_fileExporter.isInProgress()) {
         qDebug() << "⚠️ exporter busy";
         return;
@@ -44,7 +44,7 @@ void WifiOptimizer::exportSignalHistoryToFile() {
     m_exportWatcher.setFuture(m_exportFuture);
 }
 
-void WifiOptimizer::cancelExport() {
+void SimpleFileExporter::cancelExport() {
     if (m_exportFuture.isRunning()) {
         m_cancelRequested.store(true);
         qDebug() << "❗ 저장 취소 요청됨";

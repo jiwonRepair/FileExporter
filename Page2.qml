@@ -13,24 +13,24 @@ ApplicationWindow {
 
         Button {
             text: "Export Signal History"
-            onClicked: wifiOptimizer.exportSignalHistoryToFile()
+            onClicked: fileExporter.exportSignalHistoryToFile()
         }
 
         Button {
             text: "Cancel Export"
-            onClicked: wifiOptimizer.cancelExport()
+            onClicked: fileExporter.cancelExport()
         }
     }
 
     Connections {
-        target: wifiOptimizer
+        target: fileExporter
         function onSaveFinished(){
 			console.log("✅ 저장 완료")
 		}
         function onSaveCancelled(){
 			console.log("🛑 저장 취소됨")
 		}		
-        function onProgressChanged(){
+        function onProgressChanged(percent){
 			console.log("📊 저장 진행률:", percent + "%")
 		}
     }

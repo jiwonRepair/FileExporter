@@ -1,20 +1,20 @@
-#ifndef WIFI_OPTIMIZER_H
-#define WIFI_OPTIMIZER_H
+#ifndef SIMPLE_FILE_EXPORTER_H
+#define SIMPLE_FILE_EXPORTER_H
 
 #include <QObject>
 #include <QVector>
 #include <QString>
 #include <QFuture>
 #include <QFutureWatcher>
-#include <QtConcurrent>
+#include <QtConcurrent/QtConcurrentRun>  // ✅ 정확한 헤더만 포함
 #include <atomic>
 #include "LibuvFileExporter.h"
 
-class WifiOptimizer : public QObject
+class SimpleFileExporter : public QObject
 {
     Q_OBJECT
 public:
-    explicit WifiOptimizer(QObject* parent = nullptr);
+    explicit SimpleFileExporter(QObject* parent = nullptr);
 
     Q_INVOKABLE void exportSignalHistoryToFile();
     Q_INVOKABLE void cancelExport();
@@ -33,4 +33,4 @@ private:
     std::atomic_bool m_cancelRequested = false;
 };
 
-#endif // WIFI_OPTIMIZER_H
+#endif // SIMPLE_FILE_EXPORTER_H

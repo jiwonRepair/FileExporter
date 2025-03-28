@@ -12,13 +12,11 @@ int main(int argc, char *argv[])
     SimpleFileExporter exporter;
     engine.rootContext()->setContextProperty("fileExporter", &exporter);
 
-    const QUrl url(u"qrc:/Page2.qml"_qs);
-    QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
-                     &app, [url](QObject *obj, const QUrl &objUrl) {
-        if (!obj && url == objUrl)
-            QCoreApplication::exit(-1);
-    }, Qt::QueuedConnection);
-    engine.load(url);
+    // ✅ QML 로딩
+    engine.load(QUrl::fromLocalFile("D:/qtprojects/FileExporter/Page2.qml"));
+
+    if (engine.rootObjects().isEmpty())
+        return -1;
 
     return app.exec();
 }
