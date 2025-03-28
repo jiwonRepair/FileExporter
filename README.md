@@ -51,3 +51,15 @@ libuv + QtConcurrent를 조합하여 **CPU 자원 사용을 극한으로 줄인*
 
 - Qt 6.x (QtConcurrent 포함)
 - libuv (vcpkg 또는 시스템 경로)
+
+
+## ✅ 최신 업데이트 내용 2025-03-28 13:21
+feat(libuv-exporter): 스레드/동적할당 없이 완전 비동기 파일 저장 기능 최종 구현
+
+- LibuvFileExporter 클래스 비동기 파일 저장 기능 완성
+- 스레드, 멀티프로세스, 동적 메모리 할당 없이 작동 (libuv 루프 단독 사용)
+- uv_run(UV_RUN_DEFAULT) 한 줄로 libuv 처리 루프 최소 실행
+- Qt UI 스레드와 완전 분리되어 블로킹 현상 없음
+- 진행률 및 완료 콜백은 QMetaObject::invokeMethod로 안전하게 전달
+- formatter 기반 라인 구성 방식으로 다양한 포맷 대응 가능
+- 실시간성 또는 저자원 환경에서도 안정적인 동작 보장
